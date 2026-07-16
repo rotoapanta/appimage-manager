@@ -6,8 +6,13 @@ DEST="${HOME}/.local/share/appimage-manager"
 BIN="${HOME}/.local/bin/appimage-manager"
 
 mkdir -p "${DEST}" "${HOME}/.local/bin"
+
 rm -rf "${DEST:?}"/*
-cp -R "${PROJECT_ROOT}/bin" "${PROJECT_ROOT}/lib" "${DEST}/"
+
+cp -R \
+    "${PROJECT_ROOT}/bin" \
+    "${PROJECT_ROOT}/lib" \
+    "${DEST}/"
 
 if [[ -d "${PROJECT_ROOT}/templates" ]]; then
     cp -R "${PROJECT_ROOT}/templates" "${DEST}/"
@@ -19,10 +24,24 @@ export APPIMAGE_MANAGER_ROOT="${DEST}"
 exec "${DEST}/bin/appimage-manager" "\$@"
 EOF
 
-chmod +x "${BIN}" "${DEST}/bin/appimage-manager"
+chmod +x "${BIN}"
+chmod +x "${DEST}/bin/appimage-manager"
 
-echo "AppImage Manager instalado."
-echo "Comando: appimage-manager"
 echo
-echo 'Si no se reconoce, añade a ~/.bashrc:'
-echo 'export PATH="$HOME/.local/bin:$PATH"'
+echo "AppImage Manager instalado correctamente."
+echo
+echo "Comando disponible:"
+echo "  appimage-manager"
+echo
+echo "Verifica con:"
+echo "  appimage-manager --version"
+echo
+
+if [[ ":${PATH}:" != *":${HOME}/.local/bin:"* ]]; then
+    echo "Aviso: ~/.local/bin no está incluido en PATH."
+    echo
+    echo "Ejecuta:"
+    echo '  echo '\''export PATH="$HOME/.local/bin:$PATH"'\'' >> ~/.bashrc'
+    echo "  source ~/.bashrc"
+    echo
+fi
