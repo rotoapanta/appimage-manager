@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+IFS=$'\n\t'
+
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export APPIMAGE_MANAGER_ROOT="${PROJECT_ROOT}"
+
+# shellcheck source=../lib/bootstrap.sh
+source "${PROJECT_ROOT}/lib/bootstrap.sh"
+
+aim_main "$@"
