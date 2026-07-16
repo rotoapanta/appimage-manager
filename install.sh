@@ -7,7 +7,11 @@ BIN="${HOME}/.local/bin/appimage-manager"
 
 mkdir -p "${DEST}" "${HOME}/.local/bin"
 rm -rf "${DEST:?}"/*
-cp -R "${PROJECT_ROOT}/bin" "${PROJECT_ROOT}/lib" "${PROJECT_ROOT}/templates" "${DEST}/"
+cp -R "${PROJECT_ROOT}/bin" "${PROJECT_ROOT}/lib" "${DEST}/"
+
+if [[ -d "${PROJECT_ROOT}/templates" ]]; then
+    cp -R "${PROJECT_ROOT}/templates" "${DEST}/"
+fi
 
 cat > "${BIN}" <<EOF
 #!/usr/bin/env bash
