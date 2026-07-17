@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 readonly AIM_NAME="appimage-manager"
-readonly AIM_VERSION="2.0.0"
+readonly AIM_VERSION="2.0.1"
 
 readonly AIM_BASE_DIR="${HOME}/.local/opt/appimage-manager"
 readonly AIM_BIN_DIR="${HOME}/.local/bin"
